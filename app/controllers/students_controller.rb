@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   
   get '/signup' do 
-    erb : 'students/new'
+    erb :'students/new'
   end 
   
   
