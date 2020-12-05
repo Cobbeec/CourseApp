@@ -1,1 +1,6 @@
-<h1> this is my index! </h1> 
+<h1> This is my index! Here are all the courses </h1> 
+
+<% @courses.each do |course| %>
+    <h2> <%=course.name %> </h2>
+
+    <% end %> 
