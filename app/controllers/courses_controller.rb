@@ -9,4 +9,9 @@ class CoursesController < ApplicationController
          erb :'/courses/new'
        end
 
+ get '/courses/:id' do
+     @course = Course.find(params[:id])
+         erb :'/courses/show'
+        end
+
 end 
