@@ -1,5 +1,11 @@
 class StudentsController < ApplicationController
-    get '/students' do
+  
+  get '/signup' do 
+    erb : 'students/new'
+  end 
+  
+  
+  get '/students' do
         @students = Student.all
         erb :'/students/index' 
       end

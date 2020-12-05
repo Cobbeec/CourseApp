@@ -1,5 +1,7 @@
-<h1> Show Page</h1>
-Name: <%=@course.name%> 
+<h2 style="background-color:DodgerBlue;"> Course Information</h2>
+Name: <%=@course.name%> <br> </br>
+Subject: <%=@course.subject%> <br> </br>
+Teacher: <%=@course.teacher%> <br> </br>
 <a href="/courses/<%= @course.id %>/edit"> Edit this course </a> 
 
 <form action="/courses/<%= @course.id %>" method="POST"> 
