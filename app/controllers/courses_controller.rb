@@ -8,7 +8,7 @@ get '/courses' do
 get '/courses/new' do
     @courses = Course.all
          erb :'courses/new'
-       end
+     end
  
 get '/courses/:id' do
      @course = Course.find_by_id(params[:id])
@@ -21,20 +21,21 @@ get '/courses/:id/edit' do
     end
 
 post '/courses' do
-    @course = Course.create(params)
-    redirect to "/courses/#{@course.id}"
-    end
+    @course = Course.create(params[:course])
+    @course.save 
+    redirect to '/courses'
+end 
 
 patch '/courses/:id' do 
     course = Course.find(params[:id])
     course.update(params[:course])
-    redirect to "/courses/#{courses.id}"
-    end 
+    redirect to '/courses'
+end 
 
 delete '/courses/:id' do 
-    course = Course.find(params[:id])
-    Course.destory(params[:id])
+    @course = Course.find_by_id(params[:id])
+    @course.delete
     redirect to '/courses' 
-    end 
+end 
 
 end 
