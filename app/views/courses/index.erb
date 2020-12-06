@@ -1,4 +1,10 @@
-<h1> This is my index! Here are all the courses </h1> 
+<h1> This is my index! </h1>
+<h2> Here are all your courses </h2> 
+
+<% if logged_in?%>
+<h4> "Welcome, #{@student.name}."You are logged in </h4> 
+
+    <% end %>
 
 <% @courses.each do |course| %>
     <h2> <%=course.name %> </h2>

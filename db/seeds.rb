@@ -1,2 +1,2 @@
-elliot = Student.create(name: "Elliot", grade: 11)
+elliot = Student.create(username: "Elliot1", email: "elliot@school.net", password: "password" , name: "Elliot", grade: 11)
 ap_lit=Course.create(name: "AP Literature", subject: "English", teacher: "Ms. Johnson") 

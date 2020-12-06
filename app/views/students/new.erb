@@ -1,1 +1,12 @@
 <h1> Sign up here </h1>
+
+<%= @error %>
+
+<form method="post" action="/signup">
+  Username:  <input type="text" name="student[username]" required> <br>
+  Email:  <input type="email" name="student[email]" required> <br>
+   Password: <input type="password" name="student[password]"required> <br>
+   Name: <input type="text" name="student[name]" required> <br>
+   Grade: <input type="number" name="student[grade]"required> <br>
+    <input type="submit" value="sign up"required> 
+</form>
