@@ -12,23 +12,33 @@ class StudentsController < ApplicationController
     else 
       @error = student.errors.full_messages.join("")
       erb :'students/new'
-end 
-end 
-# post '/signup' do 
-#   if params[:student].values.any?{|v| v.blank?  }
-#      redirect to '/signup'
-#   else 
-#    student = Student.create(params[:student])
-#    session[:student_id] = student.id 
-#    redirect to '/courses'
-# end 
-# end 
-  # get '/students' do
-  #       @students = Student.all
-  #       erb :'/students/index' 
-  #     end
-    
-  #     get '/students/new' do 
-  #       erb :'/students/new'
-  #     end
+    end 
+  end 
+
+  #in theory should be in a sessionscontroller 
+   
+    get '/login' do 
+      if is_logged_in?
+        redirect '/courses'
+      else 
+      erb :'students/login'
+    end 
+  end 
+
+
+    post 'login' do
+      student = Student.find_by_username(params[:student][:username])
+      if student && student.authenticate(params[:student][:password])  
+      session[:student_id] = student.id 
+      redirect to '/courses'
+      else 
+        redirect to '/login'
+    end 
+  end 
+
+    get '/logout' do 
+    session.clear 
+    redirect to '/login'
+    end 
+
 end 

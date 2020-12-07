@@ -2,7 +2,8 @@
 <h2> Here are all your courses </h2> 
 
 <% if logged_in?%>
-<h4> Welcome, <%= current_student.name %> You are logged in </h4> 
+<h4> Welcome, <%= current_student.name %> You are logged in </h4>
+<a href="/logout"> Log out here </a> 
 
     <% end %>
 
