@@ -6,7 +6,6 @@ get '/courses' do
     end
 
 get '/courses/new' do
-    @courses = Course.all
          erb :'courses/new'
      end
  
@@ -22,6 +21,8 @@ get '/courses/:id/edit' do
 
 post '/courses' do
     @course = Course.create(params[:course])
+    binding.pry 
+    @course.student = current_student 
     @course.save 
     redirect to '/courses'
 end 

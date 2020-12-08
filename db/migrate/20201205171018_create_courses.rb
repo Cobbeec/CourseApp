@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :name
       t.string :subject 
       t.string :teacher 
-      t.integer :student_id
+      t.belongs_to :student 
     end
   end
 end

@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
 
   #in theory should be in a sessionscontroller 
    
-    get '/login' do 
+    get '/students/login' do 
       if is_logged_in?
         redirect '/courses'
       else 
@@ -25,8 +25,7 @@ class StudentsController < ApplicationController
     end 
   end 
 
-
-    post 'login' do
+    post '/login' do
       student = Student.find_by_username(params[:student][:username])
       if student && student.authenticate(params[:student][:password])  
       session[:student_id] = student.id 
@@ -38,7 +37,7 @@ class StudentsController < ApplicationController
 
     get '/logout' do 
     session.clear 
-    redirect to '/login'
+    redirect to '/students/login'
     end 
 
 end 

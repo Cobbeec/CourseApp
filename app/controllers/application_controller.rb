@@ -16,18 +16,18 @@ class ApplicationController < Sinatra::Base
    end
   
    helpers do 
-    def logged_in?
-      !!session[:student_id]
-   end 
+      def is_logged_in?
+          !!session[:student_id]
+    end 
 
-   def current_student #memoization?  
-    @current_student || Student.find_by_id(session[:student_id]) 
-   end 
+    def current_student #memoization?  
+      @current_student ||= Student.find_by_id(session[:student_id]) 
+    end 
 
 
   #  get '/students/new' do
   #    erb :'/students/new'
   #  end
-
 end
+
 end 
