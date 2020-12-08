@@ -24,16 +24,22 @@ get '/courses/:id/edit' do
 end 
 
 post '/courses' do
-    @course = Course.create(params[:course])
-    @course.student = current_student 
-    @course.save 
-    redirect to '/courses'
+    @course = Course.new(params[:course])
+    if valid_params? && @course.save
+        redirect "/courses/#{@course.id}"
+    else 
+        erb : "courses/new"
+    end 
 end 
 
+
 patch '/courses/:id' do 
-    course = Course.find(params[:id])
-    course.update(params[:course])
-    redirect to '/courses'
+    @course = Course.find_by_id(params[:id])
+    if valid_params? && @course.update(params[:course])
+        redirect "/courses/#{@course.id}"
+    else 
+        redirect "/courses/#{@course.id}"/edit 
+end 
 end 
 
 delete '/courses/:id' do 
