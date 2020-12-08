@@ -15,13 +15,16 @@ get '/courses/:id' do
      end
 
 get '/courses/:id/edit' do
-    @course = Course.find(params[:id])
-      erb :'courses/edit'
+    if is_logged_in? && current_student == @course.student 
+    @course = Course.find_by_id(params[:id])
+    erb :'courses/edit'
+    else 
+        redirect "/courses/new" 
     end
+end 
 
 post '/courses' do
     @course = Course.create(params[:course])
-    binding.pry 
     @course.student = current_student 
     @course.save 
     redirect to '/courses'

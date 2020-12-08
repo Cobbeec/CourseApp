@@ -1,10 +1,12 @@
 <h2 style="background-color:DodgerBlue;"> Course Information</h2>
-Name: <%=@course.name%> <br> </br>
+<h2> Name: <%=@course.name%> </h2> <br> </br>
 Subject: <%=@course.subject%> <br> </br>
 Teacher: <%=@course.teacher%> <br> </br>
-<a href="/courses/<%= @course.id %>/edit"> Edit this course </a> 
 
+<% if @course.student.id == current_student.id %> 
+<a href="/courses/<%= @course.id %>/edit"> Edit this course </a> 
 <form action="/courses/<%= @course.id %>" method="POST"> 
 <input type="hidden" value="DELETE" name="_method">
 <input type= "submit" value="Delete"> 
 </form> 
+<% end %> 
