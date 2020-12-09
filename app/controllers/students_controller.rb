@@ -29,10 +29,16 @@ class StudentsController < ApplicationController
       student = Student.find_by_username(params[:student][:username])
       if student && student.authenticate(params[:student][:password])  
       session[:student_id] = student.id 
-      redirect to '/courses'
+      redirect to "/students/#{student.id}"
       else 
         redirect to '/students/login'
     end 
+  end 
+
+  get '/students/:id' do 
+   @student = Student.find_by_id(params[:id]) 
+   @courses = @student.courses 
+   erb :'students/show'
   end 
 
     get '/logout' do 
