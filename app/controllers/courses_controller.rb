@@ -9,14 +9,17 @@ get '/courses/new' do
          erb :'courses/new'
      end
  
-get '/courses/:id' do
-     @course = Course.find_by_id(params[:id])
+get '/courses/:id' do 
+    if @course = Course.find_by_id(params[:id])
        erb :'/courses/show'
+    else 
+        redirect "/courses"
      end
+    end 
 
 get '/courses/:id/edit' do
-    if is_logged_in? && current_student == @course.student 
     @course = Course.find_by_id(params[:id])
+    if is_logged_in? && current_student == @course.student 
     erb :'courses/edit'
     else 
         redirect "/courses/new" 
@@ -24,28 +27,35 @@ get '/courses/:id/edit' do
 end 
 
 post '/courses' do
-    @course = Course.new(params[:course])
-    if valid_params? && @course.save
+    @course = current_student.courses.build(params[:course])
+    if params[:title] != "" && @course.save
         redirect "/courses/#{@course.id}"
     else 
-        erb : "courses/new"
-    end 
+        erb :'/courses/new'
+end 
 end 
 
 
 patch '/courses/:id' do 
     @course = Course.find_by_id(params[:id])
-    if valid_params? && @course.update(params[:course])
+    if is_logged_in? && @course.student == current_student && params[:title] != "" 
+        @course.update(params[:course])
         redirect "/courses/#{@course.id}"
     else 
-        redirect "/courses/#{@course.id}"/edit 
-end 
+        #flash[:message] = "You don't have permission"
+        redirect "/courses/#{@course.id}/edit"
+    end 
 end 
 
 delete '/courses/:id' do 
     @course = Course.find_by_id(params[:id])
+    if is_logged_in && current_student == @course.student 
     @course.delete
-    redirect to '/courses' 
+    else 
+    #flash[:message] = "You don't have permission to delete this course.""
+    end 
+    redirect to '/courses'  
+end 
 end 
 
-end 
+
