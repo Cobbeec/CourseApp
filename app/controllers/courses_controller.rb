@@ -6,8 +6,13 @@ get '/courses' do
     end
 
 get '/courses/new' do
+    if is_logged_in? 
          erb :'courses/new'
+    else 
+        # flash[:Your login is not valid. Please try again] message 
+        erb :'students/login'
      end
+end 
  
 get '/courses/:id' do 
     if @course = Course.find_by_id(params[:id])
@@ -49,12 +54,12 @@ end
 
 delete '/courses/:id' do 
     course = Course.find_by_id(params[:id])
-    # if is_logged_in && current_student == @course.student 
+    if is_logged_in? && course.student == current_student
     course.delete  
     # else 
     # #flash[:message] = "You don't have permission to delete this course."" 
     redirect to '/courses'  
-# end 
+ end 
 end 
 end 
 

@@ -1,17 +1,15 @@
 <h1> student show </h1> 
-<h2 style="background-color:DodgerBlue;"> Course Information</h2>
+<h2 style="background-color:SteelBlue;"> Course Information</h2>
+
+<a href="/courses/new">Add a new course here</a></h4>
+<br></br>
+<a href="/logout"> Log out here </a> 
 
 <h3> Below are all of the current courses </h3>
 <% @courses.each do |course| %> 
     <h4> <%=course.name %> </h4> 
      <% if course.student == current_student%>
-    <a href="/courses/<%=course.id%>/edit"> Edit Your Course(s) Here</a> 
+    <a href="/courses/<%=course.id%>/edit"> Edit Your Course Here</a> 
     <% end %> 
-
-    <br> </br>
-    <a href="/courses/new">Add a new course here</a></h4>
-    <br></br>
-   
-    <a href="/logout"> Log out here </a> 
-
+    
 <% end %> 
