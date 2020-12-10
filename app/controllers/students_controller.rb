@@ -15,8 +15,6 @@ class StudentsController < ApplicationController
     end 
   end 
 
-  #in theory should be in a sessionscontroller 
-   
     get '/students/login' do 
       if is_logged_in? 
         redirect '/courses'

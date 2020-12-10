@@ -1,11 +1,9 @@
-<h1> student show </h1> 
 <h2 style="background-color:SteelBlue;"> Course Information</h2>
 
 <a href="/courses/new">Add a new course here</a></h4>
 <br></br>
-<a href="/logout"> Log out here </a> 
-
-<h3> Below are all of the current courses </h3>
+<h3> Below are all of the current courses: </h3>
+<h4> Click below a course to edit the information. </h4> <br><br> 
 <% @courses.each do |course| %> 
     <h4> <%=course.name %> </h4> 
      <% if course.student == current_student%>
@@ -13,3 +11,6 @@
     <% end %> 
     
 <% end %> 
+
+<a href="/logout"> <br> <br>
+ Log out here </a> 

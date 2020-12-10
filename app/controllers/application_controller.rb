@@ -1,6 +1,5 @@
 require './config/environment'
-# require 'sinatra/base'
-# require 'sinatra/flash'
+
 
 class ApplicationController < Sinatra::Base
  
@@ -11,10 +10,11 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions 
-    # register Sinatra::Flash
+    register Sinatra::Flash
   end
    
    get "/" do
+    flash[:message] ="Welcome!"
     erb :'/students/new'
    end
   
@@ -27,10 +27,9 @@ class ApplicationController < Sinatra::Base
       @current_student ||= Student.find_by_id(session[:student_id]) 
     end 
 
-
-  #  get '/students/new' do
-  #    erb :'/students/new'
-  #  end
+    get '/students/new' do
+      erb :'/students/new'
+    end
 end
 
 end 

@@ -1,9 +1,8 @@
-<h1 style ="background-color:DodgerBlue;"> Welcome to ClassApp </h1> 
-<h2> Here are all your current classes</h2> 
+<h1 style ="background-color:DodgerBlue;"> Course Index</h1> 
 
 <% if is_logged_in?%>
 <h3> Welcome, <%= current_student.name %>. You are logged in. </h3>
-<a href="/logout"> Log out here </a> 
+
   
 
 <br> </br>
@@ -15,8 +14,8 @@
 <% @courses.each do |course| %> 
     <h5> <%=course.name %> </h5> 
     <% end %> 
-
-
+    <br><br> 
+    <a href="/logout"> Log out here </a> 
    
 
   

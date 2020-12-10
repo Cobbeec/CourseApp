@@ -1,17 +1,18 @@
-<h1> Welcome to ClassApp </h1>
+<h1> Welcome to ClassApp! </h1>
+<% if flash[:message] %>
+<%= flash[:message] %> 
+<% end %> 
+<br>
 
-<h2>Sign up here </h2>
-
-<a href="/students/login"> Or Login here </a> 
+<a href="/students/login"> Login here if you have an account. </a> 
 <br></br>
 
-
-
+<h2>Sign up here </h2>
 <form method="post" action="/signup">
   Username:  <input type="text" name="student[username]" required> <br>
-  Email:  <input type="email" name="student[email]" required> <br>
-   Password: <input type="password" name="student[password]"required> <br>
-   Name: <input type="text" name="student[name]" required> <br>
-   Grade: <input type="number" name="student[grade]"required> <br>
+  Email: &nbsp; &nbsp; &nbsp; &nbsp;<input type="email" name="student[email]" required> <br>
+   Password:  <input type="password" name="student[password]"required> <br>
+   Name: &nbsp; &nbsp; &nbsp; <input type="text" name="student[name]" required> <br>
+   Grade: &nbsp; &nbsp; &nbsp; <input type="number" name="student[grade]"required> <br>
     <input type="submit" value="sign up"required> 
 </form>

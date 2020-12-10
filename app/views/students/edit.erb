@@ -4,22 +4,4 @@
 <form action="/students/<%=@student.id%>" method="POST">
   <label>Name:</label>
 
-  <br></br>
-
-  <input type="text" name="student[name]" id="student_name" value="<%=@student.name%>">
-  <br></br>
-  <label>Choose an existing class:</label>
-  <br></br>
-  <%Course.all.each do |course|%>
-    <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id%>" value="<%=pet.id%>" <%='checked' if @owner.pets.include?(pet) %>><%=pet.name%></input>
-  <%end%>
-
-  <br></br>
-
-  <label>and/or, create a new course:</label>
-  <br></br>
-  <label>name:</label>
-    <input  type="text" name="course[name]" id="course_name"></input>
-  <br></br>
-  <input type="submit" value="Update Student">
 </form>
