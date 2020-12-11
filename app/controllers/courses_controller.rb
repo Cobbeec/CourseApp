@@ -36,7 +36,9 @@ post '/courses' do
     if params[:title] != "" && @course.save
         redirect "/courses/#{@course.id}"
     else 
-        erb :'/courses/new'
+        erb :'/courses/new' #are you using @course on your new page? Your instance 
+        #variable just travels with the request. Doesn't go from route to route. Goes with 
+        #http request 
 end 
 end 
 
@@ -53,6 +55,7 @@ patch '/courses/:id' do
 end 
 
 delete '/courses/:id' do 
+    #add route protections 
     @course = Course.find_by_id(params[:id])
     @course.delete
     redirect to '/courses'

@@ -4,7 +4,11 @@
 <% end %> 
 <br>
 
-<a href="/students/login"> Login here if you have an account. </a> 
+  <% if @error %>
+  <%= @error %> 
+  <% end %> 
+
+<a href="/students/login"> <br>Login here if you have an account. </a> 
 <br></br>
 
 <h2>Sign up here </h2>
