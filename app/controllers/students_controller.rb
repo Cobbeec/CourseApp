@@ -36,11 +36,14 @@ class StudentsController < ApplicationController
   get '/students/:id/edit' do
     #add route protections here 
     @student = Student.find_by_id(params[:id]) 
-    @courses = @student.courses 
     erb :'/students/edit'
-  end
+  # else 
+  #   redirect "/courses/new" 
+  # end
+end
 
   get '/students/:id' do 
+    #binding.pry 
    @student = Student.find_by_id(params[:id]) 
    @courses = @student.courses 
    erb :'students/show'
@@ -48,9 +51,9 @@ class StudentsController < ApplicationController
 
   patch '/students/:id' do
     #add route protections here 
-    @student = Student.find_by_id(params[:id]) 
-    @student.update(params[:student])
-    erb :'students/show'
+    student = Student.find_by_id(params[:id]) 
+    student.update(params[:student])
+    redirect "/students/#{student.id}"
   end
   
 
