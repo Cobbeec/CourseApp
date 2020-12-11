@@ -36,14 +36,14 @@ class StudentsController < ApplicationController
   get '/students/:id/edit' do
     #add route protections here 
     @student = Student.find_by_id(params[:id]) 
+    if is_logged_in? && current_student == @student 
     erb :'/students/edit'
-  # else 
-  #   redirect "/courses/new" 
-  # end
-end
+   else 
+    erb :'students/show'
+   end
+end 
 
   get '/students/:id' do 
-    #binding.pry 
    @student = Student.find_by_id(params[:id]) 
    @courses = @student.courses 
    erb :'students/show'
@@ -51,11 +51,15 @@ end
 
   patch '/students/:id' do
     #add route protections here 
+    #binding.pry 
     student = Student.find_by_id(params[:id]) 
+    if is_logged_in? && current_student == student 
     student.update(params[:student])
     redirect "/students/#{student.id}"
+    else 
+      erb :'students/show'
   end
-  
+end 
 
     get '/logout' do 
     session.clear 

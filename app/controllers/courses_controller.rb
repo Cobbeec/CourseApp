@@ -57,9 +57,14 @@ end
 delete '/courses/:id' do 
     #add route protections 
     @course = Course.find_by_id(params[:id])
-    @course.delete
+    if is_logged_in? && @course.student == current_student && params[:title] != "" 
+    @course.destroy 
     redirect to '/courses'
+    else 
+        flash[:message] = "You do not have access to this file."  
+        redirect "/courses/#{course.id}/edit"
  end 
+end 
 
 end 
 
