@@ -34,7 +34,6 @@ class StudentsController < ApplicationController
   end 
 
   get '/students/:id/edit' do
-    #add route protections here 
     @student = Student.find_by_id(params[:id]) 
     if is_logged_in? && current_student == @student 
     erb :'/students/edit'
@@ -50,8 +49,6 @@ end
   end 
 
   patch '/students/:id' do
-    #add route protections here 
-    #binding.pry 
     student = Student.find_by_id(params[:id]) 
     if is_logged_in? && current_student == student 
     student.update(params[:student])

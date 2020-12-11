@@ -27,18 +27,16 @@ get '/courses/:id/edit' do
     if is_logged_in? && current_student == @course.student 
     erb :'courses/edit'
     else 
-        redirect "/courses/new" 
+        redirect "/courses"
     end
 end 
 
 post '/courses' do
-    @course = current_student.courses.build(params[:course])
-    if params[:title] != "" && @course.save
-        redirect "/courses/#{@course.id}"
+    course = current_student.courses.build(params[:course])
+    if params[:title] != "" && course.save
+        redirect "/courses/#{course.id}"
     else 
-        erb :'/courses/new' #are you using @course on your new page? Your instance 
-        #variable just travels with the request. Doesn't go from route to route. Goes with 
-        #http request 
+        erb :'/courses/new'
 end 
 end 
 
@@ -55,7 +53,6 @@ patch '/courses/:id' do
 end 
 
 delete '/courses/:id' do 
-    #add route protections 
     @course = Course.find_by_id(params[:id])
     if is_logged_in? && @course.student == current_student && params[:title] != "" 
     @course.destroy 
