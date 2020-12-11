@@ -9,7 +9,7 @@ get '/courses/new' do
     if is_logged_in? 
          erb :'courses/new'
     else 
-        # flash[:Your login is not valid. Please try again] message 
+        flash[:message] = "Your login is not valid. Please try again"  
         erb :'students/login'
      end
 end 
@@ -47,20 +47,17 @@ patch '/courses/:id' do
         course.update(params[:course])
         redirect "/courses/#{course.id}"
     else 
-        #flash[:message] = "You don't have permission"
+        flash[:message] = "You do not have access to this file."  
         redirect "/courses/#{course.id}/edit"
     end 
 end 
 
 delete '/courses/:id' do 
-    course = Course.find_by_id(params[:id])
-    if is_logged_in? && course.student == current_student
-    course.delete  
-    # else 
-    # #flash[:message] = "You don't have permission to delete this course."" 
-    redirect to '/courses'  
+    @course = Course.find_by_id(params[:id])
+    @course.delete
+    redirect to '/courses'
  end 
-end 
+
 end 
 
 

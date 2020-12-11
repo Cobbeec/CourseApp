@@ -1,4 +1,7 @@
 <h1>Edit Course <%= @course.name%></h1>
+<% if flash[:message] %>
+<%= flash[:message] %> 
+<% end %> 
 
 <form method="POST" action="/courses/<%=@course.id%>">
 <input type="hidden" name="_method" value="PATCH"> 

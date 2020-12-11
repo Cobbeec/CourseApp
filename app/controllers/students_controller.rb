@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
     student = Student.new(params[:student])
     if student.save
       session[:student_id] = student.id 
-      redirect to '/courses'
+      redirect to '/students/show' 
     else 
       @error = student.errors.full_messages.join("")
       erb :'students/new'
@@ -33,11 +33,24 @@ class StudentsController < ApplicationController
     end 
   end 
 
+  get '/students/:id/edit' do
+    @student = Student.find_by_id(params[:id]) 
+    @courses = @student.courses 
+    erb :'/students/edit'
+  end
+
   get '/students/:id' do 
    @student = Student.find_by_id(params[:id]) 
    @courses = @student.courses 
    erb :'students/show'
   end 
+
+  patch '/students/:id' do
+    @student = Student.find_by_id(params[:id]) 
+    @student.update(params[:student])
+    erb :'students/show'
+  end
+  
 
     get '/logout' do 
     session.clear 

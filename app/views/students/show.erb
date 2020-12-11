@@ -1,4 +1,9 @@
-<h2 style="background-color:SteelBlue;"> Course Information</h2>
+<h2 style="background-color:SteelBlue;"> Your Course Information</h2>
+
+<% if is_logged_in?%>
+<h3> Welcome, <%= current_student.name %>. You are logged in. </h3>
+
+<% end %> 
 
 <a href="/courses/new">Add a new course here</a></h4>
 <br></br>
@@ -14,3 +19,4 @@
 
 <a href="/logout"> <br> <br>
  Log out here </a> 
+

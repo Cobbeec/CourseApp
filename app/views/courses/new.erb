@@ -1,4 +1,7 @@
 <h1>Create a New Course</h1>
+<% if flash[:message] %>
+<%= flash[:message] %> 
+<% end %> 
 
 <form action="/courses" method="POST">
   <label>Name:</label>

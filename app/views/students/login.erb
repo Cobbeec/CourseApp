@@ -1,4 +1,7 @@
 <h1 style="background-color:DodgerBlue;"> Login Here </h1> 
+<% if flash[:message] %>
+<%= flash[:message] %> 
+<% end %> 
 
 <form method="post" action="/login">
   Username:  <input type="text" name="student[username]" required> <br>
