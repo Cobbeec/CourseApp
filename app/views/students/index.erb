@@ -1,0 +1,10 @@
+<h1 style ="background-color:SteelBlue;"> Student Index</h1> 
+
+<h3> Below are all of the current students </h3>
+<% @students.each do |student| %> 
+    <h5> <%=student.name %> </h5> 
+    <% end %> 
+    <br><br> 
+    <a href="/logout"> Log out here </a> 
+   
+   

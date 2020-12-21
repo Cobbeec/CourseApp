@@ -33,6 +33,12 @@ class StudentsController < ApplicationController
     end 
   end 
 
+  get '/students' do
+    @students = Student.all
+        erb :'/students/index'
+    end
+
+
   get '/students/:id/edit' do
     @student = Student.find_by_id(params[:id]) 
     if is_logged_in? && current_student == @student 
@@ -43,10 +49,13 @@ class StudentsController < ApplicationController
 end 
 
   get '/students/:id' do 
-   @student = Student.find_by_id(params[:id]) 
-   @courses = @student.courses 
-   erb :'students/show'
+   if @student = Student.find_by_id(params[:id]) 
+    @courses = @student.courses 
+    erb :'students/show'
+  else
+    redirect "/students"
   end 
+end 
 
   patch '/students/:id' do
     student = Student.find_by_id(params[:id]) 

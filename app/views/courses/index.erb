@@ -1,4 +1,7 @@
 <h1 style ="background-color:SteelBlue;"> Course Index</h1> 
+<% if flash[:message] %>
+<%= flash[:message] %> 
+<% end %> 
 
 <% if is_logged_in?%>
 <h3> Welcome, <%= current_student.name %>. You are logged in. </h3>

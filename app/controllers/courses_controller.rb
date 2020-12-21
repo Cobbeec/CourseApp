@@ -27,6 +27,7 @@ get '/courses/:id/edit' do
     if is_logged_in? && current_student == @course.student 
     erb :'courses/edit'
     else 
+        flash[:message] = "You do not have access to this file."  
         redirect "/courses"
     end
 end 
@@ -42,6 +43,7 @@ end
 
 
 patch '/courses/:id' do 
+    #binding.pry 
     course = Course.find_by_id(params[:id])
     if is_logged_in? && course.student == current_student && params[:title] != "" 
         course.update(params[:course])
